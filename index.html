@@ -1,12 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherApp</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="weather-app">
+        <form class="search-form" id="search-city"> 
+          <div class="row">
+            <div class="col-6">
+              <input
+                type="search"
+                placeholder="Type your city"
+                autofocus="on"
+                autocomplete="off"
+                class="form-control shadow-sm"
+                id="city-input"
+              />
+            </div>
+            <div class="col-3">
+              <input
+              type="submit"
+              value="Search"
+              class="form-control btn btn-primary shadow-sm w-100"                
+              />
+            </div>
+              <div class="col-3">
+                <button class="btn btn-success shadow-sm w-100" id="current-location-button">Current</button>
+              </div>
+          </div>
+        </form> 
+        <h1><span class="weather">Weather</span>Forecast</h1>
+        <div class="city" id="changed-city"></div>
+        <ul>
+          <li class="current-date" id="changed-date">
+            Date
+          </li >
+          <li class="current-date" id="changed-month"></li>
+          
+          <li class="current-date" id="description">
+            Sunny
+          </li>
+        </ul>
+
+        <div class="row">
+          <div class="col-md-6">
+            <span class="weather-icon"></span>
+            <span class="temperature" id="temp"> 20 </span> 
+            <span class="degree"> <a href="#" id="celsius"> °C </a></span>
+            <span class="degree">|<a href="#" id="fahrenheit">°F </a> </span> 
+          </div>
+          <div class="col-md-6">
+            <ul>
+              <li> Humidity: <span id="humid"></span> % </li>
+              <li> Wind: <span id="wind"></span> m/sec </li>
+            </ul>
+          </div>
+        </div>
+
+        
+      <!-- list -->
+
+      <!-- 5 days app -->
+      <div class="row">
+        <!-- Thursday -->
+        <div class="col-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                Thursday
+              </h5>
+              <p>February, 9</p>
+              <img src="./images/sunny.jpg" alt="sunny" />
+              <img src="./images/moon.jpg" alt="moon" />
+              <div class="row">
+                <div class="col">Temperature</div>
+                <div class="col">-6° - 0°</div>
+              </div>
+              <div class="row">
+                <div class="col">Humidity</div>
+                <div class="col">40 - 75%</div>
+              </div>
+              <div class="row">
+                <div class="col">Pricipitation</div>
+                <div class="col">sunny</div>
+              </div>
+              <div class="row">
+                <div class="col">Wind</div>
+                <div class="col">3 - 6 m/s</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Friday -->
+        <div class="col-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                Friday
+              </h5>
+              <p>February, 10</p>
+              <img src="./images/sunny.jpg" alt="sunny" />
+              <img src="./images/moon.jpg" alt="moon" />
+              <div class="row">
+                <div class="col">Temperature</div>
+                <div class="col">-5° - 0°</div>
+              </div>
+              <div class="row">
+                <div class="col">Humidity</div>
+                <div class="col">41 - 85%</div>
+              </div>
+              <div class="row">
+                <div class="col">Pricipitation</div>
+                <div class="col">sunny</div>
+              </div>
+              <div class="row">
+                <div class="col">Wind</div>
+                <div class="col">2 m/s</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Saturday -->
+        <div class="col-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                Saturday
+              </h5>
+              <p>February, 11</p>
+              <img src="./images/smallclouds.jpg" alt="smallclouds" />
+              <img src="./images/moon.jpg" alt="moon" />
+              <div class="row">
+                <div class="col">Temperature</div>
+                <div class="col">-3° - +2°</div>
+              </div>
+              <div class="row">
+                <div class="col">Humidity</div>
+                <div class="col">52 - 73%</div>
+              </div>
+              <div class="row">
+                <div class="col">Pricipitation</div>
+                <div class="col">partly cloudy</div>
+              </div>
+              <div class="row">
+                <div class="col">Wind</div>
+                <div class="col">2 m/s</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Sunday -->
+        <div class="col-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                Sunday
+              </h5>
+              <p>February, 12</p>
+              <img src="./images/clouds.jpg" alt="clouds" />
+              <img src="./images/moonclouds.jpg" alt="moonclouds" />
+              <div class="row">
+                <div class="col">Temperature</div>
+                <div class="col">0° - +4°</div>
+              </div>
+              <div class="row">
+                <div class="col">Humidity</div>
+                <div class="col">66 - 86%</div>
+              </div>
+              <div class="row">
+                <div class="col">Pricipitation</div>
+                <div class="col">cloudy</div>
+              </div>
+              <div class="row">
+                <div class="col">Wind</div>
+                <div class="col">4-31 m/s</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Monday -->
+        <div class="col-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                Monday
+              </h5>
+              <p>February, 13</p>
+              <img src="./images/clouds.jpg" alt="clouds" />
+              <img src="./images/nightclouds.jpg" alt="nightclouds" />
+              <div class="row">
+                <div class="col">Temperature</div>
+                <div class="col">-1° - +4°</div>
+              </div>
+              <div class="row">
+                <div class="col">Humidity</div>
+                <div class="col">47 - 74%</div>
+              </div>
+              <div class="row">
+                <div class="col">Pricipitation</div>
+                <div class="col">cloudy</div>
+              </div>
+              <div class="row">
+                <div class="col">Wind</div>
+                <div class="col">9 - 19 m/s</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <footer>
+      Coded by Evgeniia Korolova
+    </footer>
+    <script src="./src/index.js"></script>
+  </body>
 </html>
